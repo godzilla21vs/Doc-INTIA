@@ -134,4 +134,3 @@ Ce projet est un test pratique pour AFREETECH.
 ## 👤 Auteur
 
 Test pratique fullstack AFREETECH
-
