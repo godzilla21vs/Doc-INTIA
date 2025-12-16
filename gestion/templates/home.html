@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h2 class="mb-4">Bienvenue, {{ user.username }} !</h2>
+        <p class="lead">Vous êtes connecté en tant que <strong>{{ user.get_role_display }}</strong>.</p>
+        
+        {% if user.branch %}
+            <p>Branche assignée : <span class="badge bg-primary">{{ user.branch.nom }} - {{ user.branch.ville }}</span></p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-people"></i> Clients</h5>
+                <p class="card-text">Gérer les clients de l'assurance.</p>
+                <a href="{% url 'client_list' %}" class="btn btn-primary">Voir les clients</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-shield-check"></i> Assurances</h5>
+                <p class="card-text">Gérer les contrats d'assurance.</p>
+                <a href="{% url 'assurance_list' %}" class="btn btn-success">Voir les assurances</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-building"></i> Branches</h5>
+                <p class="card-text">Gérer les branches/succursales.</p>
+                <a href="{% url 'branche_list' %}" class="btn btn-info">Voir les branches</a>
+            </div>
+        </div>
+    </div>
+    {% if user.is_super_admin or user.is_branch_admin %}
+    <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title"><i class="bi bi-people-fill"></i> Employés</h5>
+                <p class="card-text">Gérer les comptes des employés.</p>
+                <a href="{% url 'employee_list' %}" class="btn btn-warning">Voir les employés</a>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+

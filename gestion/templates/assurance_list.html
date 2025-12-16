@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="h4 mb-0">Liste des Assurances</h1>
+    <a href="{% url 'assurance_add' %}" class="btn btn-primary">Ajouter Assurance</a>
+</div>
+<table class="table table-hover align-middle">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Client</th>
+            <th>Branche</th>
+            <th>Montant</th>
+            <th>Date début</th>
+            <th>Date fin</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for assurance in assurances %}
+        <tr>
+            <td>{{ assurance.type_assurance }}</td>
+            <td>{{ assurance.client }}</td>
+            <td><span class="badge bg-secondary">{{ assurance.branche }}</span></td>
+            <td>{{ assurance.montant }} fcfa</td>
+            <td>{{ assurance.date_debut }}</td>
+            <td>{{ assurance.date_fin }}</td>
+            <td class="text-end">
+                <a href="{% url 'assurance_edit' assurance.pk %}" class="btn btn-sm btn-outline-warning me-1">Modifier</a>
+                <a href="{% url 'assurance_delete' assurance.pk %}" class="btn btn-sm btn-outline-danger">Supprimer</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7" class="text-center text-muted">Aucune assurance.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

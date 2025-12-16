@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="h4 mb-3">Branche</h1>
+<form method="post" class="row g-3">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="d-flex justify-content-end mt-2">
+        <a href="{% url 'branche_list' %}" class="btn btn-outline-secondary me-2">Annuler</a>
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </div>
+</form>
+{% endblock %}
